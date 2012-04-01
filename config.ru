@@ -2,5 +2,5 @@ require 'sinatra'
 
 set :environment, :production
 
-require './pictshare'
+require './capsule'
 run Sinatra::Application
