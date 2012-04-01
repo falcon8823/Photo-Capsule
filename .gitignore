@@ -1,7 +1,7 @@
 *~
 .bundle/
 log/*.log
-public/originals/*
-public/thumbnails/*
-public/previews/*
-public/zips/*
+public/originals/*/
+public/thumbnails/*/
+public/previews/*/
+public/zips/*/
