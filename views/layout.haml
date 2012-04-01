@@ -1,0 +1,46 @@
+!!!
+%html
+  %head
+    %meta{charset: 'UTF-8'}
+    %meta{name: 'robots', content: 'noindex,nofollow'}
+    %meta{name: 'viewport', content: 'width=device-width, initial-scale=1.0'}
+    %title Photo Capsule
+    %link{href: '/css/bootstrap.css', rel: 'stylesheet'}
+    %link{href: '/css/bootstrap-responsive.css', rel: 'stylesheet'}
+    %link{href: '/css/main.css', rel: 'stylesheet'}
+  %body
+    %header
+      .container-fluid
+        .row-fluid.logo
+          %h1
+            %a{href: '/'} Photo Capsule
+          好きな写真を1つにまとめてダウンロード
+        %hr
+    .container-fluid
+      .row-fluid
+        .span3
+          .well.sidebar-nav
+            %ul.nav.nav-list
+              %li.nav-header albums
+              - @albums.each do |a|
+                %li
+                  %a{href: '/albums/' + a}
+                    %i.icon-book
+                    = a
+        .span9
+          = yield
+      %hr
+    %footer
+      .container-fluid
+        .row-fluid
+          .span5.well
+            %h2 Photo Capsule
+            %p 
+              好きな写真を1つにまとめてダウンロード
+            %p
+              (C) Copyright 2012 Hayato OKUMOTO
+              All rights reserved.
+
+    %script{src: '/js/jquery.js'}
+    %script{src: '/js/bootstrap.js'}
+    %script{src: '/js/main.js'}

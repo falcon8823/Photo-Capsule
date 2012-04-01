@@ -1,0 +1,33 @@
+%h1#album_name= @album_name
+
+.check-buttons{align: 'right'}
+  %input.btn.btn-success.check-btn#true{type: 'button', value: '全てチェック'}
+  %input.btn.btn-danger.check-btn#false{type: 'button', value: '全てのチェックを解除'}
+
+%form{action: "/albums/#{@album_name}/download", method: 'post'}
+  %ul.thumbnails
+    - @img_list.each_with_index do |f, i|
+      -# 拡張子部分を取り除いたファイル名
+      - name = f.sub(/\..*$/, '')
+      %li
+        %a.thumbnail{data: {toggle: 'modal', target: "##{i}"}}
+          %img{src: "/thumbnails/#{@album_name}/#{f}", width: '120px'}
+        .file_name
+          %input{type: 'checkbox', name: "files[#{i}]", value: f}
+          = f
+        -# プレビューモーダル
+        .modal.fade{id: "#{i}"}
+          .modal-header
+            %a.close{data:{dismiss: 'modal'}} ×
+            %h3= f
+          .modal-body
+            -#%img{src: "/thumbnails/#{@album_name}/#{f}", width: '320px'}
+          .modal-footer
+            %a.btn{data: {dismiss: 'modal'}} 閉じる
+            %a.btn.btn-info{href: "/originals/#{@album_name}/#{f}"} フルプレビュー
+
+  %input.btn.btn-success.check-btn#true{type: 'button', value: '全てチェック'}
+  %input.btn.btn-danger.check-btn#false{type: 'button', value: '全てのチェックを解除'}
+  %div{align: 'right'}
+    %input.btn.btn-primary{type: 'submit', value: 'チェックしたファイルをダウンロード(ZIP形式)'}
+
