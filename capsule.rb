@@ -61,7 +61,7 @@ def exist_albums
 		a << File.basename(f) if FileTest::directory?(f)
 	end
 	
-	a
+	a.sort!
 end
 
 # トップページ
@@ -113,7 +113,7 @@ post '/albums/:album_name/download' do
 			unless File.exist?(dirname)
 				Dir::mkdir dirname
 			end
-			Zip::Archive.open zippath, Zip::CREATE do |zip|
+			Zip::Archive.open zippath, Zip::CREATE, Zip::NO_COMPRESSION do |zip|
 				files_path.each do |f|
 					zip.add_file f
 				end
