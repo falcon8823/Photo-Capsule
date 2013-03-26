@@ -102,7 +102,7 @@ post '/albums/:album_name/download' do
 	
 	# ファイル名をソートして連結した文字列をキーとし
 	# その文字列のMD5値をZIPファイル名にする
-	zipname = 'photos-' +
+	zipname = "#{@album_name}-" +
 		/^.{8}/.match(Digest::MD5.new.update(files_path.sort.join(' ')).to_s)[0] + '.zip'
 	zippath = ZIP_PATH + @album_name + '/' + zipname
 	
